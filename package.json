@@ -12,11 +12,19 @@
     "koa-static": "^5.0.0",
     "log4js": "^2.5.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.2.0",
+    "pre-commit": "^1.2.2"
+  },
   "scripts": {
     "start": "pm2 start bin/www",
+    "lint": "node node_modules/eslint/bin/eslint.js --ext .js -c .eslintrc.js controller --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit":[
+    "lint"
+  ],
   "author": "",
   "license": "ISC"
 }
