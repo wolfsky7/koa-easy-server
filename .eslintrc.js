@@ -19,7 +19,7 @@ module.exports = {
       // "react/no-array-index-key": 1,
       // "react/sort-comp":0,//出现次序 警告
       // "react/prop-types":1,//proptypes 警告
-      "import/no-extraneous-dependencies":0,
+      "import/no-extraneous-dependencies":1,
       "no-underscore-dangle": 1,
       "no-return-assign": 1,
       "arrow-body-style": 0,
