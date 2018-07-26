@@ -7,7 +7,7 @@
 const router=new require('koa-router')()
 
 
-module.exports=router;
+
 
 router.get('/doc',(ctx)=>{
   ctx.render('doc/index',{
@@ -30,3 +30,5 @@ router.get('/doc',(ctx)=>{
     }]
   })
 })
+
+module.exports=router;
