@@ -1,0 +1,36 @@
+html
+  head
+    title doc文档
+    style(type="text/css").
+      .collapse div{
+        display:none;
+      }
+      .active div{
+        display:block;
+      }
+      li div h3{
+        padding-left:30px;
+      }
+      li div p{
+        padding-left:60px;
+      }
+    script.
+      function itemClick(e){
+        e.className=e.className=="collapse"?"active":"collapse"
+      }
+  body
+    h1 文档自动生成
+    - for(var i in docs)
+      li.collapse(onclick="itemClick(this)")
+        article
+          hr
+          h2 #{docs[i].__title}
+          h2 #{docs[i].apiname}
+          div
+            - var apis=Object.keys(docs[i]).filter(item=>item!='__title'&&item!='apiname'&&item!="response")
+            - for(var j in apis)
+                h3 #{apis[j]}
+                p #{docs[i][apis[j]]}
+            - if(docs[i].response)
+              h3 response
+              p=docs[i].response

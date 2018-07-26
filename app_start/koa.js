@@ -5,6 +5,8 @@
 const staticKoa=require('koa-static')
 const bodyParser=require('koa-bodyparser')
 const multer=require('koa-multer')
+const jade=require('koa-jade')
+var path=require('path')
 const querystring=require('querystring')
 
 const uploads=multer({
@@ -21,7 +23,7 @@ const uploads=multer({
     }),
 })
 
-const route=require('koa-route')
+const route=new require('koa-router')()
 
 module.exports=function(koa){
     
@@ -36,14 +38,24 @@ module.exports=function(koa){
     // 静态处理
     koa.use(staticKoa("./public"))
 
-     // 上传
-     koa.use(route.post('/upload',uploads.single("file"),(ctx,next)=>{
-         ctx.body={
-             file:ctx.req.body.filename
-         }
-     }));
+    route.post('/upload',uploads.single("file"),(ctx,next)=>{
+        ctx.body={
+            file:ctx.req.body.filename
+        }
+    })
 
-    // 参数处理
+    // 页面渲染
+    let jd=new jade({
+        viewPath:path.join(process.cwd(),'views'),
+    })
+
+    koa.use(jd.middleware)
+
+
+     // 上传
+     koa.use(route.routes());
+
+    // body参数处理
     koa.use(bodyParser())
 
     // url 参数处理
@@ -68,13 +80,14 @@ module.exports=function(koa){
             let code=e.statusCode || e.status || 500;
             ctx.response.status=code;
             if(rsType=="json"){
-                ctx.response.type="json";
-                ctx.response.body={status:code,msg:e.message}
-            }
-            else{
                 ctx.response.type = 'html';
                 ctx.response.body = '<p>Something wrong, please contact administrator.</p>';
                 ctx.app.emit('error', e, ctx);
+            }
+            else{
+                ctx.response.type="json";
+                ctx.response.body={status:code,msg:typeof e=="string"?e:e.message}
+               
             }
         }
     })
