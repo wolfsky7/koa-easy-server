@@ -1,0 +1,11 @@
+{
+  "apps":{
+    "script":"./bin/www.js",
+    "env": {
+      "NODE_ENV": "production"   
+    },
+    "env_dev": {
+        "NODE_ENV": "development"
+    }
+  }
+}

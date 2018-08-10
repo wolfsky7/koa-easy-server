@@ -5,30 +5,21 @@
 */
 
 const router=new require('koa-router')()
-
+const apiData=require('../public/api.json')
 
 
 
 router.get('/doc',(ctx)=>{
-  ctx.render('doc/index',{
-    docs:[{
-      __title:'h1',
-      apiname:'/home',
-      hello:'asdf',
-      hell:'dfd'
-    },{
-      __title:'h1',
-      apiname:'/home',
-      hello:'asdf',
-      hell:'dfd'
-    },{
-      __title:'h1',
-      apiname:'/home',
-      hello:'asdf',
-      hell:'dfd',
-      response:'asdfasdfasdf'
-    }]
-  })
+  __g_log.info('doc')
+  ctx.render('doc/index',apiData)
+})
+
+/**
+ * test
+ * @he @@{required:1,num:1}
+ */
+router.get('/doc/test',ctx=>{
+  ctx.body="123";
 })
 
 module.exports=router;

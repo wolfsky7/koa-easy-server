@@ -2,7 +2,10 @@ const Koa = require('koa');
 const app = new Koa();
 
 const config = require('./config/config')
+require('./app_start/log')
+
 let AppStart=require('./app_start/koa')
+
 let autoroute=require('./router')
 
 
@@ -13,7 +16,6 @@ app.use((ctx,next)=>{
 
 // error
 app.on('error',(err)=>{
-  console.error()
   console.error(err);
 })
 
@@ -22,7 +24,7 @@ AppStart(app);
 autoroute(app,'./controller').then(()=>{
   //404
   app.use((ctx)=>{
-    ctx.body="404"
+    ctx.render('404')
   })
 })
 

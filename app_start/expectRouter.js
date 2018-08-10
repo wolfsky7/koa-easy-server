@@ -1,0 +1,11 @@
+module.exports=[
+  "/",
+  "/doc",
+  "/doc/test",
+  {path:"/user/register",method:"get"},
+  {path:"/user/register",method:"post"},
+  "/user/login",
+  '/testpost',
+  '/testpost1',
+  '/home',
+]

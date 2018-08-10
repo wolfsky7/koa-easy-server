@@ -5,12 +5,18 @@
 
 module.exports={
     test:{
-
+        host:'192.168.99.100',
+        port:27000,
+        database:'mongo'
     },
     real:{
-
+        host:'192.168.99.100',
+        port:27000,
+        database:'mongo'
     },
     pre:{
-        
+        host:'192.168.99.100',
+        port:27000,
+        database:'mongo'
     }
 }

@@ -8,11 +8,14 @@ html
       .active div{
         display:block;
       }
-      li div h3{
+      li div.route{
         padding-left:30px;
       }
-      li div p{
-        padding-left:60px;
+      li div.field{
+        padding-left:30px;
+      }
+      li div.field p{
+        padding-left:30px;
       }
     script.
       function itemClick(e){
@@ -24,13 +27,18 @@ html
       li.collapse(onclick="itemClick(this)")
         article
           hr
-          h2 #{docs[i].__title}
-          h2 #{docs[i].apiname}
-          div
-            - var apis=Object.keys(docs[i]).filter(item=>item!='__title'&&item!='apiname'&&item!="response")
-            - for(var j in apis)
-                h3 #{apis[j]}
-                p #{docs[i][apis[j]]}
-            - if(docs[i].response)
-              h3 response
-              p=docs[i].response
+          h2 #{docs[i].desc.__title._text}
+          h2 #{docs[i].name}
+          div.route
+            - var routers=docs[i].apis
+            - for(var a in routers)
+              h3 #{routers[a].__title._text}
+              h3 #{routers[a].apiname}
+              - var apis=Object.keys(routers[a]).filter(item=>item!='__title'&&item!='apiname'&&item!="response")
+              div.field
+                - for(var j in apis)
+                    h3 #{apis[j]}
+                    p #{routers[a][apis[j]]._text}
+                - if(routers[a].response)
+                  h3 response
+                  p=routers[a].response._text

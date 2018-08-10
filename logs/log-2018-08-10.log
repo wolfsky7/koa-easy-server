@@ -1,0 +1,669 @@
+[2018-08-10T09:25:23.724] [ERROR] default - { attempt: 1,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 0,
+  times_connected: 0 }
+[2018-08-10T09:25:53.406] [INFO] default - doc
+[2018-08-10T09:25:59.017] [ERROR] default - { attempt: 2,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 100,
+  times_connected: 0 }
+[2018-08-10T09:26:20.223] [ERROR] default - { attempt: 3,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 300,
+  times_connected: 0 }
+[2018-08-10T09:26:41.528] [ERROR] default - { attempt: 4,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 600,
+  times_connected: 0 }
+[2018-08-10T09:27:02.934] [ERROR] default - { attempt: 5,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1000,
+  times_connected: 0 }
+[2018-08-10T09:27:24.438] [ERROR] default - { attempt: 6,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1500,
+  times_connected: 0 }
+[2018-08-10T09:27:46.044] [ERROR] default - { attempt: 7,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2100,
+  times_connected: 0 }
+[2018-08-10T09:28:07.749] [ERROR] default - { attempt: 8,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2800,
+  times_connected: 0 }
+[2018-08-10T09:28:15.594] [INFO] default - doc
+[2018-08-10T09:28:33.491] [ERROR] default - { attempt: 1,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 0,
+  times_connected: 0 }
+[2018-08-10T09:28:54.597] [ERROR] default - { attempt: 2,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 100,
+  times_connected: 0 }
+[2018-08-10T09:29:15.803] [ERROR] default - { attempt: 3,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 300,
+  times_connected: 0 }
+[2018-08-10T09:29:37.108] [ERROR] default - { attempt: 4,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 600,
+  times_connected: 0 }
+[2018-08-10T09:29:58.515] [ERROR] default - { attempt: 5,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1000,
+  times_connected: 0 }
+[2018-08-10T09:44:50.161] [INFO] default - doc
+[2018-08-10T09:45:09.826] [ERROR] default - { attempt: 1,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 0,
+  times_connected: 0 }
+[2018-08-10T09:45:30.933] [ERROR] default - { attempt: 2,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 100,
+  times_connected: 0 }
+[2018-08-10T09:45:52.141] [ERROR] default - { attempt: 3,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 300,
+  times_connected: 0 }
+[2018-08-10T09:46:13.450] [ERROR] default - { attempt: 4,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 600,
+  times_connected: 0 }
+[2018-08-10T09:46:34.857] [ERROR] default - { attempt: 5,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1000,
+  times_connected: 0 }
+[2018-08-10T09:46:56.364] [ERROR] default - { attempt: 6,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1500,
+  times_connected: 0 }
+[2018-08-10T09:47:17.971] [ERROR] default - { attempt: 7,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2100,
+  times_connected: 0 }
+[2018-08-10T09:47:39.675] [ERROR] default - { attempt: 8,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2800,
+  times_connected: 0 }
+[2018-08-10T09:48:01.482] [ERROR] default - { attempt: 9,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 3600,
+  times_connected: 0 }
+[2018-08-10T09:48:23.388] [ERROR] default - { attempt: 10,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 4500,
+  times_connected: 0 }
+[2018-08-10T09:48:45.395] [ERROR] default - { attempt: 11,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 5500,
+  times_connected: 0 }
+[2018-08-10T09:48:50.066] [INFO] default - doc
+[2018-08-10T09:50:17.779] [INFO] default - doc
+[2018-08-10T09:50:56.628] [INFO] default - doc
+[2018-08-10T09:54:18.189] [INFO] default - doc
+[2018-08-10T09:56:08.035] [INFO] default - doc
+[2018-08-10T09:56:27.787] [ERROR] default - { attempt: 1,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 0,
+  times_connected: 0 }
+[2018-08-10T09:56:48.895] [ERROR] default - { attempt: 2,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 100,
+  times_connected: 0 }
+[2018-08-10T09:57:10.104] [ERROR] default - { attempt: 3,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 300,
+  times_connected: 0 }
+[2018-08-10T09:57:40.059] [INFO] default - doc
+[2018-08-10T09:57:59.774] [ERROR] default - { attempt: 1,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 0,
+  times_connected: 0 }
+[2018-08-10T09:58:20.882] [ERROR] default - { attempt: 2,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 100,
+  times_connected: 0 }
+[2018-08-10T09:58:42.088] [ERROR] default - { attempt: 3,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 300,
+  times_connected: 0 }
+[2018-08-10T09:59:03.393] [ERROR] default - { attempt: 4,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 600,
+  times_connected: 0 }
+[2018-08-10T09:59:24.801] [ERROR] default - { attempt: 5,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1000,
+  times_connected: 0 }
+[2018-08-10T09:59:46.305] [ERROR] default - { attempt: 6,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1500,
+  times_connected: 0 }
+[2018-08-10T10:00:07.909] [ERROR] default - { attempt: 7,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2100,
+  times_connected: 0 }
+[2018-08-10T10:00:29.614] [ERROR] default - { attempt: 8,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2800,
+  times_connected: 0 }
+[2018-08-10T10:00:51.419] [ERROR] default - { attempt: 9,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 3600,
+  times_connected: 0 }
+[2018-08-10T10:01:13.324] [ERROR] default - { attempt: 10,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 4500,
+  times_connected: 0 }
+[2018-08-10T10:01:35.328] [ERROR] default - { attempt: 11,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 5500,
+  times_connected: 0 }
+[2018-08-10T10:11:11.320] [INFO] default - doc
+[2018-08-10T10:11:30.988] [ERROR] default - { attempt: 1,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 0,
+  times_connected: 0 }
+[2018-08-10T10:11:52.098] [ERROR] default - { attempt: 2,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 100,
+  times_connected: 0 }
+[2018-08-10T10:12:13.305] [ERROR] default - { attempt: 3,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 300,
+  times_connected: 0 }
+[2018-08-10T10:12:34.609] [ERROR] default - { attempt: 4,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 600,
+  times_connected: 0 }
+[2018-08-10T10:12:56.016] [ERROR] default - { attempt: 5,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1000,
+  times_connected: 0 }
+[2018-08-10T10:13:17.523] [ERROR] default - { attempt: 6,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 1500,
+  times_connected: 0 }
+[2018-08-10T10:13:39.127] [ERROR] default - { attempt: 7,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2100,
+  times_connected: 0 }
+[2018-08-10T10:14:00.833] [ERROR] default - { attempt: 8,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 2800,
+  times_connected: 0 }
+[2018-08-10T10:14:22.639] [ERROR] default - { attempt: 9,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 3600,
+  times_connected: 0 }
+[2018-08-10T10:14:44.545] [ERROR] default - { attempt: 10,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 4500,
+  times_connected: 0 }
+[2018-08-10T10:15:06.549] [ERROR] default - { attempt: 11,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ETIMEDOUT 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ETIMEDOUT',
+     errno: 'ETIMEDOUT',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 5500,
+  times_connected: 0 }
+[2018-08-10T10:42:45.683] [DEBUG] default - redis-connected
+[2018-08-10T11:26:37.771] [DEBUG] default - redis-connected
+[2018-08-10T16:27:29.659] [DEBUG] default - redis-connected
+[2018-08-10T16:28:33.515] [DEBUG] default - redis-connected
+[2018-08-10T16:29:25.452] [DEBUG] default - redis-connected
+[2018-08-10T16:30:11.265] [DEBUG] default - redis-connected
+[2018-08-10T16:30:47.520] [DEBUG] default - redis-connected
+[2018-08-10T16:33:32.709] [DEBUG] default - redis-connected
+[2018-08-10T16:35:58.368] [DEBUG] default - redis-connected
+[2018-08-10T16:36:51.716] [DEBUG] default - redis-connected
+[2018-08-10T16:55:42.686] [DEBUG] default - redis-connected
+[2018-08-10T16:58:33.377] [DEBUG] default - redis-connected
+[2018-08-10T17:02:11.639] [DEBUG] default - redis-connected
+[2018-08-10T17:07:11.300] [DEBUG] default - redis-connected
+[2018-08-10T17:14:15.448] [DEBUG] default - redis-connected
+[2018-08-10T17:17:04.831] [DEBUG] default - redis-connected
+[2018-08-10T17:19:43.989] [DEBUG] default - redis-connected
+[2018-08-10T17:29:47.329] [DEBUG] default - redis-connected
+[2018-08-10T17:31:13.328] [DEBUG] default - redis-connected
+[2018-08-10T17:35:20.223] [DEBUG] default - redis-connected
+[2018-08-10T17:36:10.121] [DEBUG] default - redis-connected
+[2018-08-10T17:51:14.335] [DEBUG] default - redis-connected

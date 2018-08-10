@@ -14,9 +14,9 @@ const app_env=0;//0 debug  1 release 2 pre
 module.exports={
     isDebug:app_env==0,
     port:3000,
-    dbConfig:getConfig(app_env,dbConfig),
-    logConfig:getConfig(app_env,logConfig),
-    redisConfig:getConfig(app_env,redisConfig),
+    db:getConfig(app_env,dbConfig),
+    log:getConfig(app_env,logConfig),
+    redis:getConfig(app_env,redisConfig),
 }
 
 function getConfig(app_env,config){

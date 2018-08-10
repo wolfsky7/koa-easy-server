@@ -5,7 +5,6 @@
 */
 const router=new require('koa-router')()
 const pick = require('lodash/pick')
-const mongo=require('../lib/easy-mogo')
 
 
 /**

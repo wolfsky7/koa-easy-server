@@ -13,12 +13,22 @@ const EasyNote=require('easy-note')
 
 
 const readFile=(file)=>{
+  if(/\.test\.js/.test(file)){
+    // 测试文件
+    return Promise.resolve(null)
+  }
+
   let route=require(file)||{};
+  
   if(route instanceof Router){
     analyRules(file)
-    return route;
+    return new Promise(s=>{
+      process.nextTick(()=>{
+        s(route)
+      })
+    });
   }
-  return null;
+  return Promise.resolve(null);
 }
 
 const noteOptions={
@@ -49,7 +59,7 @@ const analyRules=(file)=>{
         let rules=[];
         if(a!="__title"){
             for(let f in note[a]){
-                let ruleDesc=note[a][f]&&reg.exec(note[a][f]);
+                let ruleDesc=note[a][f]&&reg.exec(note[a][f]._text);
 
                 ruleDesc=ruleDesc?ruleDesc[0]:null;
                 if(!ruleDesc)
@@ -83,9 +93,13 @@ const readDir=(dir,cb)=>{
     names.forEach(name=>{
       i++;
       if(name.slice(-3,name.length)==".js"){
-        routes=routes.concat(readFile(path.join(dir,name)))
-        i--;
-        resultCheck();
+        readFile(path.join(dir,name)).then(rs=>{
+          if(rs)
+            routes=routes.concat(rs)
+          i--;
+          resultCheck();
+        })
+       
       }
       else{
         readDir(path.join(dir,name),(rs)=>{
@@ -110,18 +124,17 @@ const getRoutes=(dir)=>{
 // 字段验证规则
 const _rules={}
 
-module.exports=(koa,dir)=>{
+const autoroute=(koa,dir)=>{
 
-  // 验证
-  koa.use((ctx,next)=>{
+
+  // 字段验证
+  koa.use(async (ctx,next)=>{
     let rk=`${ctx.request.path}-${ctx.request.method.toLowerCase()}`;
     let rules=_rules[rk];
     if(rules){
-      return EasyCheck.checkFields(ctx.req.body||{},rules).then(()=>next()).catch(err=>{
-        return Promise.reject(err);
-      })
+      return  EasyCheck.checkFields(ctx.request.body||{},rules).then(()=>next())
     }
-    else next();
+    else return next();
   })
 
   return new Promise((s)=>{
@@ -135,5 +148,9 @@ module.exports=(koa,dir)=>{
   })
   
 }
+
+module.exports=autoroute;
+
+autoroute.__rules=_rules;
 
 

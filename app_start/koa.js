@@ -6,8 +6,14 @@ const staticKoa=require('koa-static')
 const bodyParser=require('koa-bodyparser')
 const multer=require('koa-multer')
 const jade=require('koa-jade')
-var path=require('path')
+const path=require('path')
 const querystring=require('querystring')
+const router=new require('koa-router')()
+const config=require('../config/config')
+const share=require('../lib/easy-share')
+const excepts=require('./expectRouter')
+const uploadPaths=require('./uploadRouter')
+const fs=require('fs')
 
 const uploads=multer({
     storage:multer.diskStorage({
@@ -18,12 +24,16 @@ const uploads=multer({
         //给上传文件重命名，获取添加后缀名
         filename: function (req, file, cb) {
             var fileFormat = (file.originalname).split(".");
-            cb(null, file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
+            cb(null, file.fieldname + '-' + Date.now() + "." + (fileFormat.length>1?fileFormat[fileFormat.length - 1]:"jpg"));
         }
     }),
+    fileFilter:(req,file,next)=>{
+        next(null,true)
+    }
 })
 
-const route=new require('koa-router')()
+// redis config init
+const redis=share(config.redis)
 
 module.exports=function(koa){
     
@@ -37,58 +47,140 @@ module.exports=function(koa){
 
     // 静态处理
     koa.use(staticKoa("./public"))
+    koa.use(staticKoa("../uploads"))
 
-    route.post('/upload',uploads.single("file"),(ctx,next)=>{
-        ctx.body={
-            file:ctx.req.body.filename
-        }
+     // body参数处理
+     koa.use(bodyParser())
+
+    // 上传
+    // 检测uploads
+    if(!fs.existsSync('../uploads')){
+        fs.mkdirSync("../uploads")
+    }
+
+    // 上传使用的是 req.body
+    koa.use((ctx,next)=>{
+        ctx.req.body=ctx.request.body;
+        return next();
     })
+    // koa.use(uploads.single('image'))
+    koa.use(uploads.array('images'))
+       
+    
 
     // 页面渲染
     let jd=new jade({
         viewPath:path.join(process.cwd(),'views'),
     })
 
-    koa.use(jd.middleware)
+    koa.use(async (ctx,next)=>{
+        return jd.middleware.call(ctx,next).next().value();
+    })
 
 
-     // 上传
-     koa.use(route.routes());
+ 
 
-    // body参数处理
-    koa.use(bodyParser())
+   
 
-    // url 参数处理
+    // url 参数处理 及 文件上传的参数
     koa.use((ctx,next)=>{
+        //uploads
+        let files=ctx.req.files;
+        if(files&&files.length){
+            ctx.request.body[files[0].fieldname]=[]
+            files.forEach(file=>{
+                ctx.request.body.push(file.path.replace(/[\w\W]*uploads\\/,""))
+            })
+        }
         let query=ctx.request.querystring;
         if(!query)return next();
         
         let rs=querystring.parse(querystring.unescape(query));
-        ctx.req.body=Object.assign(rs,ctx.req.body);
-        next();
+        ctx.request.body=Object.assign(rs,ctx.request.body);
+        return next();
     })
-
    
 
-    //错误处理
+    // 错误处理
+    // 标准输入输出
     koa.use(async (ctx,next)=>{
         try{
             await next();
+            let rs=ctx.body;
+            let isObj=typeof rs=='object'
+            if(rs===undefined||rs===null||isObj){
+                rs=rs||{status:0};
+            }
+            if(!rs.status){
+                if(rs instanceof Array)
+                    rs={
+                        status:0,
+                        rows:rs
+                    }
+                else if(isObj){
+                    rs={
+                        status:0,
+                        result:rs
+                    }
+                }
+            }
+            if(rs!==undefined||rs!==null){
+                ctx.body=rs;
+            }
         }
         catch(e){
             let rsType=ctx.request.type;
             let code=e.statusCode || e.status || 500;
             ctx.response.status=code;
-            if(rsType=="json"){
-                ctx.response.type = 'html';
-                ctx.response.body = '<p>Something wrong, please contact administrator.</p>';
+            let msg=typeof e=="string"?e:e.message;
+            if(rsType=="html"){
+                // ctx.response.type = 'html';
+                // ctx.response.body = '<p>Something wrong, please contact administrator.</p>';
+                ctx.render('500',{message:msg})
                 ctx.app.emit('error', e, ctx);
             }
             else{
-                ctx.response.type="json";
-                ctx.response.body={status:code,msg:typeof e=="string"?e:e.message}
+                ctx.type="json";
+                // ctx.response.body={status:code,msg:msg}
+                ctx.body={status:code,msg:msg}
                
             }
         }
     })
+
+
+
+    // session 权限检测
+    koa.use(async (ctx,next)=>{
+        ctx.request.redis=redis;
+        let post=ctx.request.body;
+        if(post&&post.token){
+            let sess=await redis.redis().getAsync(ctx.request.body.token)
+            if(!sess||sess.isExpire){
+                return Promise.reject('无效的token')
+            }
+        }
+        else{
+            let m=ctx.request.method.toLowerCase();
+            let path=ctx.request.path;
+            let canPass=false;
+        
+            for(let i=0,len=excepts.length;i<len;i++){
+                let item=excepts[i]
+                if(item===path){
+                    canPass=true;
+                    break;
+                }
+                if(item.path===path&&item.method==m){
+                    canPass=true;
+                    break;
+                }
+            }
+            if(!canPass)
+                return Promise.reject('无效的token')
+        }
+        return next();
+    })
+
+   
 }
