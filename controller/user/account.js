@@ -6,6 +6,7 @@ const router=new require('koa-router')();
 const mongo=require('../../lib/easy-mogo')
 const {SESSION_EXPIRE}=require('../../constants')
 const uuidv1=require('uuid/v1')
+const _pick=require('lodash/pick')
 
 /**
  * @forweb
@@ -18,12 +19,12 @@ router.get('/user/login',(ctx)=>{
 /**
  * @forweb
  */
-router.get('/user/register', (ctx,next)=>{
+router.get('/user/register', (ctx)=>{
   // return next();
   // return ctx.throw('123123')
   return Promise.reject('123123');
 
-  ctx.render('user/register')
+  // ctx.render('user/register')
 })
 
 /**
@@ -38,6 +39,11 @@ router.post('/user/loginout',async ctx=>{
 
 const getKey=(id,from)=>{
   return id+'-'+from;
+}
+
+const outUser=user=>{
+  const {_id,pwd,...others}=user;
+  return others;
 }
 
 /**
@@ -55,27 +61,29 @@ router.post('/user/login',async (ctx)=>{
     let user=await mongo.find('user',{
       unm:post.unm,
       pwd:post.pwd
-    })
+    },db)
     user=user[0];
     if(!user){
       return Promise.reject('不正确的用户名或密码')
     }
+    user._id=user._id.toString()
     user.token=uuidv1().replace(/-/g,'');
     // token 存入redis
-    await ctx.request.redis.redis().setAsync(user.token,JSON.stringify(user),'EX',SESSION_EXPIRE)
+    const sess=ctx.request.sess;
+    sess.user=user
+    sess.setSid(user.token)
+    await sess.save(SESSION_EXPIRE)
 
     // 限制多账号登陆
-    let key=getKey(user._id,post._from);
-    let lastLogin=ctx.request.redis.redis().getAsync(key);
+    const key=getKey(user._id,post._from);
+    const lastLogin=ctx.request.redis.redis().getAsync(key);
     if(lastLogin){
       // 取消上次登陆
       await ctx.request.redis.redis().delAsync(lastLogin)
     }
     await ctx.request.redis.redis().setAsync(key,user.token,'EX',SESSION_EXPIRE)
 
-    delete user._id;
-    delete user.pwd;
-    ctx.body=user;
+    ctx.body=outUser(user);
   })
 })
 
@@ -94,7 +102,7 @@ router.post('/user/register',async ctx=>{
 
     await mongo.execute(async ([,db])=>{
       // 检测唯一
-      let user=await mongo.find('user',{
+      const user=await mongo.find('user',{
         unm:post.unm
       },db);
       if(user.length){
@@ -104,7 +112,7 @@ router.post('/user/register',async ctx=>{
         unm:post.unm,
         pwd:post.pwd,
         createTime:Date.now(),
-        way:post._from||'web',
+        way:post._from||'web'
       },db)
     });
     
@@ -113,12 +121,44 @@ router.post('/user/register',async ctx=>{
 })
 
 /**
+ * 上传个人信息
+ * @nickname @@{maxLength:20,minLength:2}
+ * @desc @@{maxLength:200}
+ * @image 头像
+ * @token @@{required:1}
+ */
+router.post('/user/info',async ctx=>{
+  let post = ctx.request.body;
+  const fileds=['nickname','image','desc']
+  post=_pick(post,fileds);
+  if(!Object.keys(post).length){
+    return Promise.reject('没有要修改的信息')
+  }
+
+  await mongo.execute(async ([,db])=>{
+    await mongo.update('user',{
+      _id:req.sess.user._id
+    },post,db);
+    let newU=await mongo.find('user',{
+      _id:req.sess.user._id
+    },db)
+    newU=newU[0];
+    if(!newU){
+      return Promise.reject('无效的token')
+    }
+    await ctx.request.redis.redis().setAsync(newU.token,JSON.stringify(newU),'EX',SESSION_EXPIRE)
+
+    ctx.body=outUser(newU);
+  },'user')
+})
+
+/**
  * 刷新用户信息
  * @token
  * @response
  *  {token,nickname,phone...}
  */
-router.get('/user/profile',async ctx=>{
+router.get('/user/profile',async ()=>{
 
 })
 

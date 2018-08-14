@@ -39,5 +39,6 @@ module.exports = {
       "no-extend-native":1,
       "import/no-extraneous-dependencies":1,
       "consistent-return":1,
+      "no-undef":1
     }
 };

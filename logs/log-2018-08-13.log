@@ -1,0 +1,56 @@
+[2018-08-13T09:47:32.571] [ERROR] default - { attempt: 1,
+  error: 
+   { Error: Redis connection to 192.168.99.100:6370 failed - connect ECONNREFUSED 192.168.99.100:6370
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1198:14)
+     code: 'ECONNREFUSED',
+     errno: 'ECONNREFUSED',
+     syscall: 'connect',
+     address: '192.168.99.100',
+     port: 6370 },
+  total_retry_time: 0,
+  times_connected: 0 }
+[2018-08-13T09:52:17.142] [DEBUG] default - redis-connected
+[2018-08-13T14:31:54.645] [DEBUG] default - redis-connected
+[2018-08-13T14:43:17.951] [DEBUG] default - redis-connected
+[2018-08-13T14:45:11.294] [DEBUG] default - redis-connected
+[2018-08-13T14:57:29.824] [DEBUG] default - redis-connected
+[2018-08-13T14:57:55.987] [DEBUG] default - redis-connected
+[2018-08-13T14:59:31.618] [DEBUG] default - redis-connected
+[2018-08-13T15:00:34.873] [DEBUG] default - redis-connected
+[2018-08-13T15:47:37.082] [DEBUG] default - redis-connected
+[2018-08-13T15:49:26.172] [DEBUG] default - redis-connected
+[2018-08-13T15:49:59.899] [DEBUG] default - redis-connected
+[2018-08-13T15:50:59.200] [DEBUG] default - redis-connected
+[2018-08-13T15:53:46.536] [DEBUG] default - redis-connected
+[2018-08-13T16:12:26.287] [DEBUG] default - redis-connected
+[2018-08-13T16:13:32.260] [DEBUG] default - redis-connected
+[2018-08-13T16:23:13.172] [DEBUG] default - redis-connected
+[2018-08-13T16:23:44.557] [DEBUG] default - redis-connected
+[2018-08-13T16:24:43.274] [DEBUG] default - redis-connected
+[2018-08-13T16:25:09.726] [DEBUG] default - redis-connected
+[2018-08-13T16:25:50.502] [DEBUG] default - redis-connected
+[2018-08-13T16:28:01.690] [DEBUG] default - redis-connected
+[2018-08-13T16:28:57.920] [DEBUG] default - redis-connected
+[2018-08-13T16:31:13.027] [DEBUG] default - redis-connected
+[2018-08-13T16:40:01.311] [DEBUG] default - redis-connected
+[2018-08-13T16:41:11.444] [DEBUG] default - redis-connected
+[2018-08-13T16:43:37.240] [DEBUG] default - redis-connected
+[2018-08-13T16:44:24.021] [DEBUG] default - redis-connected
+[2018-08-13T16:45:44.651] [DEBUG] default - redis-connected
+[2018-08-13T16:53:21.402] [DEBUG] default - redis-connected
+[2018-08-13T16:54:24.383] [DEBUG] default - redis-connected
+[2018-08-13T16:55:57.078] [DEBUG] default - redis-connected
+[2018-08-13T17:01:42.441] [DEBUG] default - redis-connected
+[2018-08-13T17:01:50.512] [DEBUG] default - redis-connected
+[2018-08-13T17:02:17.286] [DEBUG] default - redis-connected
+[2018-08-13T17:13:14.238] [DEBUG] default - redis-connected
+[2018-08-13T17:45:16.404] [DEBUG] default - redis-connected
+[2018-08-13T17:47:46.115] [DEBUG] default - redis-connected
+[2018-08-13T17:48:59.193] [DEBUG] default - redis-connected
+[2018-08-13T17:53:34.899] [DEBUG] default - redis-connected
+[2018-08-13T17:56:13.366] [DEBUG] default - redis-connected
+[2018-08-13T17:56:33.718] [DEBUG] default - redis-connected
+[2018-08-13T17:57:40.939] [DEBUG] default - redis-connected
+[2018-08-13T17:58:20.547] [DEBUG] default - redis-connected

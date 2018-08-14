@@ -11,15 +11,18 @@ const querystring=require('querystring')
 const router=new require('koa-router')()
 const config=require('../config/config')
 const share=require('../lib/easy-share')
+const Sess=require("../lib/easy-sess")
 const excepts=require('./expectRouter')
 const uploadPaths=require('./uploadRouter')
 const fs=require('fs')
+const {graphql}=require('graphql')
 
+const uploadsDir="../uploads"
 const uploads=multer({
     storage:multer.diskStorage({
         //设置上传后文件路径，uploads文件夹会自动创建。
         destination: function (req, file, cb) {
-            cb(null, '../uploads')
+            cb(null,uploadsDir)
         }, 
         //给上传文件重命名，获取添加后缀名
         filename: function (req, file, cb) {
@@ -47,15 +50,15 @@ module.exports=function(koa){
 
     // 静态处理
     koa.use(staticKoa("./public"))
-    koa.use(staticKoa("../uploads"))
+    koa.use(staticKoa(uploadsDir))
 
      // body参数处理
      koa.use(bodyParser())
 
     // 上传
     // 检测uploads
-    if(!fs.existsSync('../uploads')){
-        fs.mkdirSync("../uploads")
+    if(!fs.existsSync(uploadsDir)){
+        fs.mkdirSync(uploadsDir)
     }
 
     // 上传使用的是 req.body
@@ -64,6 +67,7 @@ module.exports=function(koa){
         return next();
     })
     // koa.use(uploads.single('image'))
+    // 根据url 来判断single 或者 array
     koa.use(uploads.array('images'))
        
     
@@ -86,18 +90,40 @@ module.exports=function(koa){
     koa.use((ctx,next)=>{
         //uploads
         let files=ctx.req.files;
+        ctx.request.body=Object.assign(ctx.request.body,ctx.req.body);
         if(files&&files.length){
-            ctx.request.body[files[0].fieldname]=[]
+            let fa=ctx.request.body[files[0].fieldname]=[]
             files.forEach(file=>{
-                ctx.request.body.push(file.path.replace(/[\w\W]*uploads\\/,""))
+                fa.push(file.path.replace(/[\w\W]*uploads\\/,""))
             })
+            // 如果出错了 就把 图片删除
+            ctx.req.filesInErrRemove=true;
         }
+        
         let query=ctx.request.querystring;
         if(!query)return next();
         
         let rs=querystring.parse(querystring.unescape(query));
         ctx.request.body=Object.assign(rs,ctx.request.body);
         return next();
+    })
+
+    //graphql 处理
+    // 只是用graphql 格式化输出
+    koa.use(async (ctx,next)=>{
+        await next();
+        let post=ctx.request.body;
+        // query 类似 {hi} 
+        if(post.format&&post.format[0]=="{"){
+            // schema 对应接口标识
+            if(ctx.request._schema){
+                // 传入数据格式
+                graphql(ctx.request._schema,post.format).then(rs=>{
+                    if(!rs.error)
+                    ctx.body.rows=rs.data.rows;
+                })
+            }
+        }
     })
    
 
@@ -129,6 +155,16 @@ module.exports=function(koa){
             }
         }
         catch(e){
+            if(ctx.req.filesInErrRemove){
+                // 图片移除
+                ctx.req.files.forEach(file=>{
+                    fs.unlink(path.join(uploadsDir,file.filename),(err)=>{
+                        if(err){
+                            __g_log.error(err)
+                        }
+                    })
+                })
+            }
             let rsType=ctx.request.type;
             let code=e.statusCode || e.status || 500;
             ctx.response.status=code;
@@ -154,11 +190,9 @@ module.exports=function(koa){
     koa.use(async (ctx,next)=>{
         ctx.request.redis=redis;
         let post=ctx.request.body;
+        let sess=null
         if(post&&post.token){
-            let sess=await redis.redis().getAsync(ctx.request.body.token)
-            if(!sess||sess.isExpire){
-                return Promise.reject('无效的token')
-            }
+           sess=new Sess(post.token,redis.redis());
         }
         else{
             let m=ctx.request.method.toLowerCase();
@@ -179,6 +213,11 @@ module.exports=function(koa){
             if(!canPass)
                 return Promise.reject('无效的token')
         }
+        if(!sess){
+            sess=new Sess('',redis.redis())
+        }
+
+        ctx.request.sess=sess;
         return next();
     })
 

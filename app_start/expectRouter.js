@@ -7,5 +7,7 @@ module.exports=[
   "/user/login",
   '/testpost',
   '/testpost1',
+  '/testpost2',
+  '/testpost3',
   '/home',
 ]

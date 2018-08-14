@@ -6,6 +6,7 @@
 const router=new require('koa-router')()
 const pick = require('lodash/pick')
 const mongo=require('../lib/easy-mogo')
+const Pages=require('../graphql/page')
 
 
 /**
@@ -23,15 +24,15 @@ router.get('/',(ctx)=>{
  */
 router.get('/home',async ctx=>{
   await mongo.execute(async ([,db])=>{
-    let banners=await mongo.find('page',{
+    const banners=await mongo.find('page',{
       type:'banner'
     })
 
-    let flows=await mongo.page('page',{type:'water'},db,20,0);
+    const flows=await mongo.page('page',{type:'water'},db,20,0);
 
     ctx.body={
       banners:banners,
-      waters:flows,
+      waters:flows
     }
   })
 })
@@ -42,28 +43,36 @@ router.get('/home',async ctx=>{
  * @limit @@{num:1}
  */
 router.get('/home/water',async ctx=>{
-  const {skip=0,limit=20}=ctx.request.post||{};
-  let flows=await mongo.page('page',{type:'water'},db,limit,skip);
+  const {skip=0,limit=20,format}=ctx.request.body||{};
+  const flows=await mongo.page('page',{type:'water'},null,+limit,+skip);
+  if(format)
+    ctx.request._schema=Pages(flows)
   ctx.body=flows;
 })
 
 /**
  * 新增
- * @image @@{required:1}
+ * @images @@{required:1}
  * @desc @@{maxLength:50}
  * @type @@{required:1,reg:banner|water}
  */
 router.post('/home',async (ctx)=>{
+  const post=ctx.request.body;
+  if(!post.images.length){
+    return Promise.reject('请上传图片')
+  }
   await mongo.execute(async ([,db])=>{
-    const post=ctx.request.body;
+    
     const sess=ctx.request.sess;
-    await mongo.insert('page',{
-      path:post.image.filename,
+    const rs=await mongo.insert('page',{
+      path:post.images[0],
       desc:post.desc,
       type:post.type,
       createId:sess.user._id,
-      createTime:Date.now(),
+      createTime:Date.now()
     },db)
+
+    ctx.body={insertId:rs.insertedIds[0].toString()};
   })
 })
 
@@ -75,15 +84,16 @@ router.put('/home',async ctx=>{
   await mongo.execute(async ([,db])=>{
     const post=ctx.request.body;
     const sess=ctx.request.sess;
-    let ps=pick(post.body,['desc','type'])
-    if(post.image){
-      ps.path=post.image.filename
+    const ps=pick(post,['desc'])
+    if(post.images){
+      ps.path=post.images[0]
     }
     if(!Object.keys(ps).length){
       return Promise.reject('上传需要修改的数据') 
     }
     ps.updateTime=Date.now();
-    ps.updateId=sess.user._id;
+    ps.updateId=sess.user._id
+    
     await mongo.update('page',{
       _id:post._id
     },ps,db)
@@ -97,7 +107,7 @@ router.put('/home',async ctx=>{
 router.delete('/home',async ctx=>{
   await mongo.execute(async ([,db])=>{
     const post=ctx.request.body;
-    await mongo.delete('page',{
+    await mongo.del('page',{
       _id:post._id
     },db)
   })

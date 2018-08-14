@@ -9,6 +9,7 @@
     "easy-check": "^1.0.2",
     "easy-note": "1.0.5",
     "easy-queue": "1.0.3",
+    "graphql": "^0.13.2",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
@@ -33,7 +34,7 @@
     "start": "pm2 start pm2.json --env dev",
     "product": "pm2 start pm2.json",
     "doc-g": "set NODE_ENV=doc && node doc.js",
-    "test-g":"node testunit.js",
+    "test-g": "node testunit.js",
     "lint": "node node_modules/eslint/bin/eslint.js --ext .js -c .eslintrc.js controller --fix",
     "test": "jest"
   },

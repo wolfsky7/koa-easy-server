@@ -18,8 +18,8 @@ router.get('/doc',(ctx)=>{
  * test
  * @he @@{required:1,num:1}
  */
-router.get('/doc/test',ctx=>{
-  ctx.body="123";
+router.get('/doc/test',()=>{
+  return Promise.reject('123')
 })
 
 module.exports=router;
