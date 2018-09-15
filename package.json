@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "co": "^4.6.0",
+    "co-wechat-api": "^3.7.1",
     "compose": "^0.1.2",
     "easy-check": "^1.0.2",
     "easy-note": "1.0.5",

@@ -10,4 +10,5 @@ module.exports=[
   '/testpost2',
   '/testpost3',
   '/home',
+  /\/wx\/door/
 ]

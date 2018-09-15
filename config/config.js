@@ -13,10 +13,15 @@ const app_env=0;//0 debug  1 release 2 pre
 
 module.exports={
     isDebug:app_env==0,
-    port:3000,
+    port:3001,
+    WX:{
+        appId:'wx4babfbb6f9057a16',
+        appToken:'84f834321e7624319bcf356f751dcd73',
+        wap:'http://10.0.0.22:3000'
+    },
     db:getConfig(app_env,dbConfig),
     log:getConfig(app_env,logConfig),
-    redis:getConfig(app_env,redisConfig),
+    redis:getConfig(app_env,redisConfig)
 }
 
 function getConfig(app_env,config){

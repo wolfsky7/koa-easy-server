@@ -42,9 +42,9 @@ module.exports=function(koa){
     
     //时间记录
     koa.use(async (ctx,next)=>{
-        let start=Date.now();
+        const start=Date.now();
         await next();
-        let ms=Date.now()-start;
+        const ms=Date.now()-start;
         ctx.set('X-Response-Time', ms + 'ms');
     })
 
@@ -73,8 +73,8 @@ module.exports=function(koa){
     
 
     // 页面渲染
-    let jd=new jade({
-        viewPath:path.join(process.cwd(),'views'),
+    const jd=new jade({
+        viewPath:path.join(process.cwd(),'views')
     })
 
     koa.use(async (ctx,next)=>{
@@ -89,21 +89,26 @@ module.exports=function(koa){
     // url 参数处理 及 文件上传的参数
     koa.use((ctx,next)=>{
         //uploads
-        let files=ctx.req.files;
+        const files=ctx.req.files;
         ctx.request.body=Object.assign(ctx.request.body,ctx.req.body);
         if(files&&files.length){
-            let fa=ctx.request.body[files[0].fieldname]=[]
+            const fa=ctx.request.body[files[0].fieldname]=[]
             files.forEach(file=>{
                 fa.push(file.path.replace(/[\w\W]*uploads\\/,""))
             })
             // 如果出错了 就把 图片删除
             ctx.req.filesInErrRemove=true;
         }
+
+        //params
+        if(ctx.params){
+            ctx.request.body=Object.assign(ctx.request.body,ctx.params);
+        }
         
-        let query=ctx.request.querystring;
+        const query=ctx.request.querystring;
         if(!query)return next();
         
-        let rs=querystring.parse(querystring.unescape(query));
+        const rs=querystring.parse(querystring.unescape(query));
         ctx.request.body=Object.assign(rs,ctx.request.body);
         return next();
     })
@@ -112,7 +117,7 @@ module.exports=function(koa){
     // 只是用graphql 格式化输出
     koa.use(async (ctx,next)=>{
         await next();
-        let post=ctx.request.body;
+        const post=ctx.request.body;
         // query 类似 {hi} 
         if(post.format&&post.format[0]=="{"){
             // schema 对应接口标识
@@ -130,10 +135,17 @@ module.exports=function(koa){
     // 错误处理
     // 标准输入输出
     koa.use(async (ctx,next)=>{
+        // 允许跨域
+        // ctx.response.headers["Access-Control-Allow-Origin"]='*';
+        // ctx.response.headers["Access-Control-Allow-Methods"]='POST,GET,PUT,OPTIONS,DELETE';
+        // ctx.response.headers["Access-Control-Allow-Headers"]='accept, content-type';
+        ctx.set("Access-Control-Allow-Origin",'*');
+        ctx.set("Access-Control-Allow-Methods",'POST');
+        ctx.set("Access-Control-Allow-Headers",'accept, content-type');
         try{
             await next();
             let rs=ctx.body;
-            let isObj=typeof rs=='object'
+            const isObj=typeof rs=='object'
             if(rs===undefined||rs===null||isObj){
                 rs=rs||{status:0};
             }
@@ -165,10 +177,11 @@ module.exports=function(koa){
                     })
                 })
             }
-            let rsType=ctx.request.type;
-            let code=e.statusCode || e.status || 500;
+            const rsType=ctx.request.type;
+            const code=e.statusCode || e.status || 500;
             ctx.response.status=code;
-            let msg=typeof e=="string"?e:e.message;
+            const msg=typeof e=="string"?e:e.message;
+            ctx.status=200;
             if(rsType=="html"){
                 // ctx.response.type = 'html';
                 // ctx.response.body = '<p>Something wrong, please contact administrator.</p>';
@@ -189,18 +202,25 @@ module.exports=function(koa){
     // session 权限检测
     koa.use(async (ctx,next)=>{
         ctx.request.redis=redis;
-        let post=ctx.request.body;
+        const post=ctx.request.body;
         let sess=null
         if(post&&post.token){
            sess=new Sess(post.token,redis.redis());
         }
         else{
-            let m=ctx.request.method.toLowerCase();
-            let path=ctx.request.path;
+            const m=ctx.request.method.toLowerCase();
+            const path=ctx.request.path;
             let canPass=false;
         
             for(let i=0,len=excepts.length;i<len;i++){
-                let item=excepts[i]
+                const item=excepts[i]
+                if(item instanceof RegExp){
+                    if(item.test(path)){
+                        canPass=true;
+                        break;
+                    }
+                }
+
                 if(item===path){
                     canPass=true;
                     break;
