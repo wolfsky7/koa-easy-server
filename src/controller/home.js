@@ -9,6 +9,7 @@ const mongo=require('../lib/easy-mogo')
 const Pages=require('../graphql/page')
 
 
+
 /**
  * 首页
  * @keyword string 关键字 @@{maxLength:10,minLength:2,required:1}

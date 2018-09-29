@@ -118,7 +118,7 @@ const getTotalTemplate=(desc,rawName)=>{
     
  }
 
- const rootPath='./controller'
+ const rootPath='./src/controller'
  autoroute(rootPath).then(docs=>{
     docs.forEach(doc=>{
       if(doc)

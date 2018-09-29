@@ -1,11 +1,11 @@
 {
-  "apps":{
-    "script":"./bin/www.js",
+  "apps": {
+    "script": "./src/bin/www.js",
     "env": {
-      "NODE_ENV": "production"   
+      "NODE_ENV": "production"
     },
     "env_dev": {
-        "NODE_ENV": "development"
+      "NODE_ENV": "development"
     }
   }
 }

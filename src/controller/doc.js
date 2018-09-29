@@ -5,7 +5,7 @@
 */
 
 const router=new require('koa-router')()
-const apiData=require('../public/api.json')
+const apiData=require('../../public/api.json')
 
 
 
