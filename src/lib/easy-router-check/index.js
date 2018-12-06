@@ -7,7 +7,7 @@ const genFun = function (field, rule) {
     return (obj, name, desc) => {
         const raw = desc.value;
         desc.value = async function (ctx, next) {
-            const body = ctx.req.body;
+            const body = ctx.request.body;
             const ps = [body[field], ...args];
             if (EasyCheck['check_' + rule].apply(null, ps)) {
                 return raw.call(obj, ctx, next)
@@ -20,13 +20,14 @@ const genFun = function (field, rule) {
     }
 }
 
+
 // const maxLength = (field, max) => genFun(field, 'maxLength', max)
 
 const opts = {}
 
 Object.keys(EasyCheck).forEach(key => {
     if (/check_/.test(key)) {
-        opts[key] = function (field) {
+        opts[key.substr(6)] = function (field) {
             const args = [field, key.substr(6), ...Array.prototype.slice.call(arguments, 1)]
             return genFun.apply(null, args);
         }

@@ -1,18 +1,25 @@
 import Router from 'koa-router'
 
-const router = new Router()
+
+const router = (BaseCla) => {
+    BaseCla.prototype.__router = BaseCla.prototype.__router || new Router();
+    return BaseCla;
+}
 
 const opts = {};
 const genFun = key => {
     opts[key] = (path) => (obj, name, desc) => {
+        const router = obj.__router||new Router();
+        obj.__router=router;
+        if (!router)
+            return;
         const raw = desc.value;
-        desc.value = function () {
-            path = path || `/${obj.constructor.name}/${name}`
+
+        path = path || `/${obj.constructor.name}/${name}`
 
             router[key](path, function (ctx, next) {
                 return raw.call(this, ctx, next)
             })
-        }
     }
 }
 
@@ -21,17 +28,7 @@ opts.del = genFun('delete')
 opts.put = genFun('get')
 opts.post = genFun('post')
 opts.all = genFun('all')
+opts.router = router;
 
-export default opts;
+module.exports = opts;
 
-class Controller {
-    constructor() {
-        this.router = new Router();
-    }
-}
-
-
-export {
-    Controller,
-    router
-}

@@ -2,7 +2,7 @@
   "name": "koa_demo",
   "version": "1.0.0",
   "description": "koa demo",
-  "main": "index.js",
+  "main": "./dist/bin/www.js",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -46,7 +46,7 @@
     "lint": "node node_modules/eslint/bin/eslint.js --ext .js -c .eslintrc.js controller --fix",
     "test": "jest",
     "build": "babel ./src -d dist",
-    "babel-start": "babel-node ./bin/www.js"
+    "babel-start": "babel-node ./src/bin/www.js"
   },
   "pre-commit": [
     "lint"

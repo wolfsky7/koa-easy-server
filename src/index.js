@@ -21,7 +21,7 @@ app.on('error', (err) => {
 
 AppStart(app);
 
-autoroute(app, './src/controller').then(() => {
+autoroute(app, './dist/controller').then(() => {
   //404
   app.use((ctx) => {
     ctx.render('404')

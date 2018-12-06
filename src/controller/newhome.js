@@ -1,12 +1,15 @@
-import { get } from '../lib/easy-router'
+import { get, router } from '../lib/easy-router'
 import { maxLength } from '../lib/easy-router-check'
 
-export default class NewHome {
+@router
+class NewHome {
 
-    @get('/')
+    @get('/newhome')
     @maxLength('a', 2)
-    async index(ctx) {
+    index(ctx) {
 
         ctx.body = "new home"
     }
 }
+
+module.exports = NewHome
